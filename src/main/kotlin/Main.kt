@@ -5,12 +5,13 @@ import io.vertx.core.AsyncResult
 import io.vertx.core.Handler
 import kotlinx.coroutines.experimental.runBlocking
 import kotlin.coroutines.experimental.suspendCoroutine
+import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     val connectionPool = PgClient.pool(
-            PgPoolOptions.fromUri("postgresql://vm-win10dev-yg:5433/pgvoltest1")
-                    .setUser("pgvoltest1")
-                    .setPassword("pgvoltest1")
+            PgPoolOptions.fromUri("postgresql://localhost:5432/postgres")
+                    .setUser("postgres")
+                    .setPassword("postgres")
                     .setMaxSize(10))
 
     runBlocking {
@@ -23,6 +24,8 @@ fun main(args: Array<String>) {
             connection.close()
         }
     }
+
+    exitProcess(0)
 }
 
 private suspend inline fun <T> awaitResult(crossinline block: (Handler<AsyncResult<T>>) -> Unit): T {
