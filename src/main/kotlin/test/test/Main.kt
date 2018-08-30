@@ -1,3 +1,5 @@
+package test.test
+
 import io.reactiverse.pgclient.PgClient
 import io.reactiverse.pgclient.PgConnection
 import io.reactiverse.pgclient.PgPoolOptions
